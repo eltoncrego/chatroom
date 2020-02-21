@@ -19,6 +19,7 @@ const Join = () => {
             onChange={(event) => {
               setName(event.target.value);
             }}
+            autoFocus
           />
         </div>
         <div>
