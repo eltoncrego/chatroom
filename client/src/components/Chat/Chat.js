@@ -49,6 +49,7 @@ const Chat = ({ location }) => {
   return(
     <div className='chat'>
       <input 
+        autoFocus
         value={message} 
         onChange={(event) => setMessage(event.target.value)}
         onKeyPress={(event) => event.key === 'Enter' ? sendMessage(event) : null}
