@@ -1,0 +1,49 @@
+$white: #FFFFFF;
+$grey: #f9f9f9;
+$borderGray: #D0D0D0;
+$primary: #CE796B;
+$titleFont: 'Poppins', sans-serif;
+$bodyFont: 'Open Sans', sans-serif;
+$contentPadding: 32px;
+$borderRadius: 4px;
+$label: 12px;
+$opacitySecondary: 0.6;
+$inputPadding: 8px;
+$btnPadding: 8px 16px;
+$initialShadow: 0px 2px 4px 0px rgba(37, 36, 34, .3);
+$activeShadow: 0px 4px 16px 0px rgba(37, 36, 34, .3);
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  background-color: $grey;
+}
+
+h1, h2, h3, h4, h5, b {
+  margin: 0;
+  font-family: $titleFont;
+}
+
+input {
+  border: none;
+  background: none;
+}
+
+#chat-app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-family: $bodyFont;
+}
+
+@media only screen and (max-width: 750px) {
+  #chat-app {
+    padding-top: 64px;
+    justify-content: flex-start;
+  }  
+}

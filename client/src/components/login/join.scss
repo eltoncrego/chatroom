@@ -1,0 +1,68 @@
+@import './../chat-app/global-styles.scss';
+
+#login {
+  display: flex;
+  flex-direction: column;
+  background-color: $white;
+  border-radius: $borderRadius;
+  padding: $contentPadding;
+  box-shadow: $initialShadow;
+
+  .login__site-logo {
+    align-self: center;
+    margin-bottom: 64px;
+    height: 48px;
+  }
+
+  .login__title {
+    color: $primary;
+  }
+  
+  .login__form {
+    display: flex;
+    flex-direction: column;
+
+    .form__label {
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      font-size: $label;
+      opacity: $opacitySecondary;
+
+      .form__text-input {
+        border: 1px solid $borderGray;
+        min-width: 250px;
+        margin-top: 2px;
+        border-radius: $borderRadius;
+        padding: $inputPadding;
+        background-color: $white;
+        outline: none;
+        transition: border 100ms ease-in-out;
+        
+        &:focus {
+          border-color: $primary;
+        }
+      }
+    }
+
+    .form__btn {
+      border: none;
+      margin-top: 32px;
+      text-transform: capitalize;
+      background-color: $primary;
+      color: $white;
+      border-radius: $borderRadius;
+      padding: $btnPadding;
+      outline: none;
+      transition: background-color 100ms ease-in-out,
+                  box-shadow 150ms ease-in-out,
+                  transform 100ms ease-in-out;
+
+      &:focus, &:hover {
+        cursor: pointer;
+        transform: translateY(-2px);
+        box-shadow: $activeShadow;
+      }
+    }
+  }
+}
