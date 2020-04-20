@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import './join.scss';
 
-const Join = function() {
+const Join = () => {
+
+  useEffect(() => {
+    document.title = `Bloop • Join a Room`;
+  });
+  
   return(
     <div id='login'>
       <svg className='login__site-logo' width="180px" height="64px" viewBox="0 0 180 64" version="1.1">
