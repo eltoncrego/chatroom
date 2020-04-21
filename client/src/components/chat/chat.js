@@ -14,7 +14,7 @@ const Chat = ({name, room}) => {
 
   return (
     <div id='chat'>
-      <h1>Chat</h1>
+      <h1>{room}</h1>
       <span>Welcome {name} to {room}!</span>
     </div>
   );

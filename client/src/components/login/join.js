@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import './join.scss';
 import SiteLogoSVG from '../../assets/site-logo-full';
 
-const Join = ({ onSubmit }) => {
-  const name = useFormInput('');
-  const room = useFormInput('');
+const Join = ({ nameProp, roomProp }) => {
+  const name = useFormInput(nameProp);
+  const room = useFormInput(roomProp);
 
   useEffect(() => {
     document.title = `Troop • Join a Room`;
@@ -36,11 +36,7 @@ const Join = ({ onSubmit }) => {
         <input 
           className='form__btn'
           type='submit'
-          value='sign in'
-          onClick={(event) => {
-            event.preventDefault();
-            onSubmit(name.value, room.value);
-          }}/>
+          value='sign in'/>
       </form>
     </div>
   );
@@ -48,11 +44,12 @@ const Join = ({ onSubmit }) => {
 
 const useFormInput = (defaultValue) => {
   const [value, setValue] = useState(defaultValue);
-
+  useEffect(() => {
+    setValue(defaultValue);
+  }, [defaultValue]);
   function handleChange(e) {
     setValue(e.target.value);
   }
-
   return {
     value,
     onChange: handleChange

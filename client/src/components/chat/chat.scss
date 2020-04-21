@@ -1,1 +1,8 @@
 @import './../chat-app/global-styles.scss';
+
+#chat {
+  background-color: $white;
+  padding: $contentPadding;
+  border-radius: $borderRadius;
+  box-shadow: $lowCastShadow;
+}

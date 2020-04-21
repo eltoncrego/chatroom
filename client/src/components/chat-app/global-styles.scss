@@ -22,7 +22,12 @@ $lowCastShadow: 0px 4px 16px 0px rgba(37, 36, 34, .1);
 
 html, body {
   margin: 0;
-  background-color: $white;
+}
+
+body {
+  background-image: url('./../../assets/topo.png');
+  background-size: auto;
+  background-repeat: repeat;
 }
 
 h1, h2, h3, h4, h5, b {
