@@ -9,5 +9,12 @@ const handler = express();
 const server = http.createServer(handler);
 const io = socketio(server);
 
+io.on('connection', (socket) => {
+  console.log(socket);
+  socket.on('disconnect', () => {
+    console.log('User has disconnected');
+  });
+});
+
 handler.use(router);
-server.listen(PORT, () => console.log(`Server has started on port ${PORT}`))
+server.listen(PORT, () => console.log(`Troop server has started. Listening on port ${PORT}`))
