@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import './join.scss';
 import SiteLogoSVG from '../../assets/site-logo-full';
+import formUtils from './../../utils/form-utls';
 
 const Join = ({ nameProp, roomProp }) => {
-  const name = useFormInput(nameProp);
-  const room = useFormInput(roomProp);
+  const name = formUtils.useFormInput(nameProp);
+  const room = formUtils.useFormInput(roomProp);
 
   useEffect(() => {
     document.title = `Troop • Join a Room`;
@@ -40,20 +41,6 @@ const Join = ({ nameProp, roomProp }) => {
       </form>
     </div>
   );
-}
-
-const useFormInput = (defaultValue) => {
-  const [value, setValue] = useState(defaultValue);
-  useEffect(() => {
-    setValue(defaultValue);
-  }, [defaultValue]);
-  function handleChange(e) {
-    setValue(e.target.value);
-  }
-  return {
-    value,
-    onChange: handleChange
-  }
 }
 
 export default Join;
