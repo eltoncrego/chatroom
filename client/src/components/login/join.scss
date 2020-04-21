@@ -6,7 +6,7 @@
   background-color: $white;
   border-radius: $borderRadius;
   padding: $contentPadding;
-  box-shadow: $initialShadow;
+  box-shadow: $lowCastShadow;
 
   .login__site-logo {
     align-self: center;
@@ -27,10 +27,12 @@
       display: flex;
       flex-direction: column;
       font-size: $label;
+      text-transform: uppercase;
       opacity: $opacitySecondary;
 
       .form__text-input {
         border: 1px solid $borderGray;
+        font-size: $body;
         min-width: 250px;
         margin-top: 2px;
         border-radius: $borderRadius;
@@ -38,6 +40,10 @@
         background-color: $white;
         outline: none;
         transition: border 100ms ease-in-out;
+
+        &::placeholder {
+          color: $placeholder;
+        }
         
         &:focus {
           border-color: $primary;
@@ -46,6 +52,7 @@
     }
 
     .form__btn {
+      font-size: $body;
       border: none;
       margin-top: 32px;
       text-transform: capitalize;
@@ -54,14 +61,11 @@
       border-radius: $borderRadius;
       padding: $btnPadding;
       outline: none;
-      transition: background-color 100ms ease-in-out,
-                  box-shadow 150ms ease-in-out,
-                  transform 100ms ease-in-out;
+      transition: background-color 100ms ease-in-out;
 
       &:focus, &:hover {
         cursor: pointer;
-        transform: translateY(-2px);
-        box-shadow: $activeShadow;
+        background-color: $primaryHover;
       }
     }
   }

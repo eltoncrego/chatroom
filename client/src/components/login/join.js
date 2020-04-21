@@ -9,7 +9,7 @@ const Join = () => {
     console.log('Getting the messages');
     fetch('/join/messages').then((resp) => {
       resp.text().then((respText) => {
-        alert(respText);
+        // alert(respText);
       });
     });
   };
