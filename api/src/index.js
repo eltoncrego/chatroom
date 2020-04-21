@@ -4,7 +4,7 @@ const http = require('http');
 
 const PORT = process.env.PORT || 5000;
 const router = require('./router');
-const { addUser, getUser } = require('./users');
+const { addUser, getUser, removeUser } = require('./users');
 
 const handler = express();
 const server = http.createServer(handler);
@@ -34,7 +34,10 @@ io.on('connection', (socket) => {
     callback();
   });
 
-  socket.on('disconnect', () => console.log(`${socket.id}: A Connection Instance Has Ended`));
+  socket.on('disconnect', () => {
+    removeUser(socket.id);
+    console.log(`${socket.id}: A Connection Instance Has Ended`);
+  });
 });
 
 handler.use(router);
