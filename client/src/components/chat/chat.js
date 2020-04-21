@@ -32,6 +32,7 @@ const Chat = ({name, room}) => {
   return (
     <div id='chat'>
       <h1 className='chat__title'>{room}</h1>
+      {/* <div className='chat__members'>{chatMembers}</div> */}
       <div className='chat__messages'>
         {renderMessages(messages, name)}
       </div>

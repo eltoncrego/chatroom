@@ -24,7 +24,7 @@ io.on('connection', (socket) => {
       return;
     }
     socket.emit('message', { user: 'Troop Coordinator', text: `Welcome, ${user.name}, to ${user.room}`});
-    socket.broadcast.to(user.room).emit('message', { user: 'Troop Coordinator', text: `${user.name}, has joined the troop!`})
+    socket.broadcast.to(user.room).emit('message', { user: 'Troop Coordinator', text: `${user.name}, has joined the troop!`});
     socket.join(user.room);
   });
   
@@ -35,8 +35,10 @@ io.on('connection', (socket) => {
   });
 
   socket.on('disconnect', () => {
+    const user = getUser(socket.id);
     removeUser(socket.id);
     console.log(`${socket.id}: A Connection Instance Has Ended`);
+    io.to(user.room).emit('message', { user: 'Troop Coordinator', text: `${user.name}, has left the troop!`})
   });
 });
 
