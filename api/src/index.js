@@ -4,7 +4,7 @@ const http = require('http');
 
 const PORT = process.env.PORT || 5000;
 const router = require('./router');
-const { addUser, getUser, removeUser } = require('./users');
+const { addUser, getUser, removeUser, getUsersInRoom} = require('./users');
 
 const handler = express();
 const server = http.createServer(handler);
@@ -26,6 +26,8 @@ io.on('connection', (socket) => {
     socket.emit('message', { user: 'Troop Coordinator', text: `Welcome, ${user.name}, to ${user.room}`});
     socket.broadcast.to(user.room).emit('message', { user: 'Troop Coordinator', text: `${user.name}, has joined the troop!`});
     socket.join(user.room);
+    io.emit('roomData', { room: user.room, users: getUsersInRoom(user.room) })
+    callback();
   });
   
   socket.on('sendMessage', (message, callback) => {
@@ -38,7 +40,8 @@ io.on('connection', (socket) => {
     const user = getUser(socket.id);
     removeUser(socket.id);
     console.log(`${socket.id}: A Connection Instance Has Ended`);
-    io.to(user.room).emit('message', { user: 'Troop Coordinator', text: `${user.name}, has left the troop!`})
+    io.to(user.room).emit('message', { user: 'Troop Coordinator', text: `${user.name}, has left the troop!`});
+    io.emit('roomData', { room: user.room, users: getUsersInRoom(user.room) });
   });
 });
 

@@ -8,16 +8,27 @@
   height: calc(100vh - 64px);
 }
 
+.chat__title,
+.chat__members {
+  margin: $contentPadding $contentPadding 0px $contentPadding;
+}
+
 .chat__title {
-  margin: $contentPadding $contentPadding 16px $contentPadding;
+  color: $primary;
+}
+
+.chat__members {
+  margin-top: 0px;
+  margin-bottom: 24px;
 }
 
 .chat__messages {
   box-shadow: $insetLowCastShadow;
-  height: calc(100% - 145px);
+  height: calc(100% - 175px);
   background-color: $grey;
   overflow-y: scroll;
   padding: 8px 16px;
+  padding-bottom: 16px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
