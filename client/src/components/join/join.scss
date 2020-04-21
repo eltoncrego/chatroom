@@ -26,10 +26,7 @@
       margin-top: 16px;
       display: flex;
       flex-direction: column;
-      font-size: $label;
-      text-transform: uppercase;
-      opacity: $opacitySecondary;
-
+      
       .form__text-input {
         border: 1px solid $borderGray;
         font-size: $body;

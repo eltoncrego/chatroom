@@ -21,17 +21,27 @@ const Chat = ({name, room}) => {
   }, []);
 
   const sendMessage = () => {
-    let dummyEvent = {};
-    dummyEvent.target = {};
-    dummyEvent.target.value = ''
-    socket.emit('sendMessage', draft.value, () => draft.onChange(dummyEvent));
+    if (draft.value !== '') {
+      let dummyEvent = {};
+      dummyEvent.target = {};
+      dummyEvent.target.value = ''
+      socket.emit('sendMessage', draft.value, () => draft.onChange(dummyEvent));
+    }
   };
 
-  let uiMessages = messages.map((message, index) => <Message key={index} text={message.text}/>);
+  let uiMessages = messages.map((message, index) => (
+    <Message 
+      key={index} 
+      message={message}
+      isUser={message.user === name}/>
+  ));
 
   return (
     <div id='chat'>
-      <h1>{room}</h1>
+      <h1 className='chat__title'>{room}</h1>
+      <div className='chat__messages'>
+        {uiMessages}
+      </div>
       <form onSubmit={(event) => {
         event.preventDefault();
         sendMessage();
@@ -43,7 +53,6 @@ const Chat = ({name, room}) => {
           {...draft}
         ></input>
         <input type='submit' value='send'></input>
-        {uiMessages}
       </form>
     </div>
   );

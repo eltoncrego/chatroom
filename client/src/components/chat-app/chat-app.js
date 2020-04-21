@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import './global-styles.scss'
-import Join from '../login/join';
+import Join from '../join/join';
 import Chat from '../chat/chat';
 
 const ChatApp = function() {

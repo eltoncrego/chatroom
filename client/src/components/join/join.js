@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import './join.scss';
 import SiteLogoSVG from '../../assets/site-logo-full';
-import formUtils from './../../utils/form-utls';
+import formUtils from '../../utils/form-utls';
 
 const Join = ({ nameProp, roomProp }) => {
   const name = formUtils.useFormInput(nameProp);
@@ -16,7 +16,7 @@ const Join = ({ nameProp, roomProp }) => {
     <div id='login'>
       <SiteLogoSVG className='login__site-logo'/>
       <form className='login__form'>
-        <label className='form__label'>
+        <label className='form__label text--label'>
           Your Name:
           <input 
             className='form__text-input'
@@ -25,7 +25,7 @@ const Join = ({ nameProp, roomProp }) => {
             placeholder='John Snow'
             {...name}/>
         </label>
-        <label className='form__label'>
+        <label className='form__label text--label'>
           Room:
           <input 
             className='form__text-input'

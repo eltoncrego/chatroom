@@ -2,10 +2,13 @@ import React from 'react';
 
 import './message.scss';
 
-const Message = ({ text }) => {
+const Message = ({ message, isUser }) => {
   return(
-    <div className='message'>
-      {text}
+    <div className={`message__wrapper ${isUser ? 'message--current-user' : null}`}>
+      <div className='message__user-label text--label'>{message.user}</div>
+      <div className='message'>
+        <div className='message__content'>{message.text}</div>
+      </div>
     </div>
   );
 };

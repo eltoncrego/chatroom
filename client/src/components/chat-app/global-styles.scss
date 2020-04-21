@@ -14,6 +14,7 @@ $body: 14px;
 $opacitySecondary: 0.6;
 $inputPadding: 8px;
 $btnPadding: 8px 16px;
+$messagePadding: 8px 16px;
 $lowCastShadow: 0px 4px 16px 0px rgba(37, 36, 34, .1);
 
 * {
@@ -47,6 +48,11 @@ input {
   align-items: center;
   min-height: 100vh;
   font-family: $bodyFont;
+}
+
+.text--label {
+  font-size: $label;
+  text-transform: uppercase;
 }
 
 @media only screen and (max-width: 750px) {
