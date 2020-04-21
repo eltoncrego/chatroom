@@ -3,39 +3,31 @@ import io from 'socket.io-client';
 
 import './chat.scss';
 import formUtils from './../../utils/form-utls';
+import Message from './../message/message';
 
 let socket;
+const ENDPOINT = 'localhost:5000';
+
 const Chat = ({name, room}) => {
-  const ENDPOINT = 'localhost:5000';
-  const [messages, setMessages] = useState([]);
   const draft = formUtils.useFormInput('');
-
-  useEffect(() => {
-    socket = io(ENDPOINT);
-    socket.emit('join', { name, room }, (error) => {
-      console.error(error);
-    });
-
-    return () => {
-      socket.emit('disconnect');
-      socket.off();
-    }
-  }, [ENDPOINT, name, room]);
+  const [messages, setMessages] = useState([]);
+  
+  useConnection(name, room);
 
   useEffect(() => {
     socket.on('message', (message) => {
-      setMessages([...messages, message]);
+      setMessages((messages) => [...messages, message]);
     });
-  }, [messages]); // TODO: FIX THIS BUG
+  }, []);
 
   const sendMessage = () => {
     let dummyEvent = {};
     dummyEvent.target = {};
     dummyEvent.target.value = ''
-    socket.emit('sendMessage', draft, () => draft.onChange(dummyEvent));
+    socket.emit('sendMessage', draft.value, () => draft.onChange(dummyEvent));
   };
 
-  console.log(messages);
+  let uiMessages = messages.map((message, index) => <Message key={index} text={message.text}/>);
 
   return (
     <div id='chat'>
@@ -51,9 +43,24 @@ const Chat = ({name, room}) => {
           {...draft}
         ></input>
         <input type='submit' value='send'></input>
+        {uiMessages}
       </form>
     </div>
   );
 };
+
+function useConnection(name, room) {
+  useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.emit('join', { name, room }, (error) => {
+      console.error(error);
+    });
+
+    return () => {
+      socket.emit('disconnect');
+      socket.off();
+    }
+  }, [name, room]);
+}
 
 export default Chat;

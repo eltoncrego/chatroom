@@ -19,7 +19,6 @@ io.on('connection', (socket) => {
       return;
     }
     const { error, user } = addUser({ id: socket.id, name, room });
-    console.log(user);
     if (error) {
       callback(error);
       return;
