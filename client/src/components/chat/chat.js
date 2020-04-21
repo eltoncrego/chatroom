@@ -29,30 +29,31 @@ const Chat = ({name, room}) => {
     }
   };
 
-  let uiMessages = messages.map((message, index) => (
-    <Message 
-      key={index} 
-      message={message}
-      isUser={message.user === name}/>
-  ));
-
   return (
     <div id='chat'>
       <h1 className='chat__title'>{room}</h1>
       <div className='chat__messages'>
-        {uiMessages}
+        {renderMessages(messages, name)}
       </div>
-      <form onSubmit={(event) => {
-        event.preventDefault();
-        sendMessage();
-      }}>
+      <form 
+        className='chat__new-message-form'
+        onSubmit={(event) => {
+          event.preventDefault();
+          sendMessage();
+        }}
+      >
         <input
+          className='new-message-form__input'
           type='text'
           name='user-message'
           placeholder='What do you want to say?'
           {...draft}
-        ></input>
-        <input type='submit' value='send'></input>
+        />
+        <input 
+          className='btn btn--send-message'
+          type='submit' 
+          value='send'
+        />
       </form>
     </div>
   );
@@ -70,6 +71,26 @@ function useConnection(name, room) {
       socket.off();
     }
   }, [name, room]);
+}
+
+function renderMessages(messages, name) {
+  let lastUser = '';
+  let continuation = false;
+  return messages.map((message, index) => {
+    if (message.user === lastUser) {
+      continuation = true;
+    } else {
+      continuation = false;
+    }
+    lastUser = message.user;
+    return (
+      <Message 
+      key={index} 
+      message={message}
+      isUser={message.user === name}
+      continuation={continuation}/>
+    );
+  });
 }
 
 export default Chat;

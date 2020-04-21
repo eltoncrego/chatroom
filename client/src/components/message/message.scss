@@ -1,7 +1,7 @@
 @import './../chat-app/global-styles.scss';
 
 .message__wrapper {
-  margin-top: 16px;
+  margin-top: 4px;
   max-width: 250px;
 }
 
@@ -10,19 +10,23 @@
 }
 
 .message {
-  background-color: $grey;
+  background-color: $white;
   padding: $messagePadding;
   border-radius: $borderRadius;
+  box-shadow: $lowCastShadow;
 }
 
 .message--current-user > .message {
   background-color: $primary;
+  color: $white;
 }
 
 .message__user-label {
   margin-left: 2px;
+  margin-top: 4px;
 }
 
 .message__content {
   word-wrap: normal;
+  font-size: $body;
 }

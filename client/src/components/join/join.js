@@ -35,7 +35,7 @@ const Join = ({ nameProp, roomProp }) => {
             {...room}/>
         </label>
         <input 
-          className='form__btn'
+          className='btn'
           type='submit'
           value='sign in'/>
       </form>
