@@ -1,0 +1,8 @@
+@import './../chat-app/global-styles.scss';
+
+#multiview {
+  height: 100vh;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+}

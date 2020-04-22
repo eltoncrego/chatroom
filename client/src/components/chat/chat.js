@@ -39,7 +39,7 @@ const Chat = ({name, room}) => {
     }
   };
 
-  let chatMembers = users.map((user, index) => {
+  let chatMembers = users.length > 5 ? (<span>You, 5+ others</span>) : users.map((user, index) => {
     if (index === 0) {
       return (<span key={index}>{user.name}</span>);
     } else if (index === users.length - 1) {
@@ -50,32 +50,36 @@ const Chat = ({name, room}) => {
 
   return (
     <div id='chat'>
-      <h1 className='chat__title'>{room}</h1>
-      <div className='chat__members'>{chatMembers} {users.length > 1 ? 'are online.' : 'is online.'}</div>
-      <div className='chat__messages'>
-        {renderMessages(messages, name)}
-        <div ref={messagesBottomRef}></div>
+      <div className='chat__header'>
+        <h1 className='header__title'>{room}</h1>
+        <div className='header__members'>{chatMembers}</div>
       </div>
-      <form 
-        className='chat__new-message-form'
-        onSubmit={(event) => {
-          event.preventDefault();
-          sendMessage();
-        }}
-      >
-        <input
-          className='new-message-form__input'
-          type='text'
-          name='user-message'
-          placeholder='What do you want to say?'
-          {...draft}
-        />
-        <input 
-          className='btn btn--send-message'
-          type='submit' 
-          value='send'
-        />
-      </form>
+      <div className='chat__content'>
+        <div className='chat__messages'>
+          {renderMessages(messages, name)}
+          <div ref={messagesBottomRef}></div>
+        </div>
+        <form 
+          className='chat__new-message-form'
+          onSubmit={(event) => {
+            event.preventDefault();
+            sendMessage();
+          }}
+        >
+          <input
+            className='new-message-form__input'
+            type='text'
+            name='user-message'
+            placeholder='What do you want to say?'
+            {...draft}
+          />
+          <input 
+            className='btn btn--send-message'
+            type='submit' 
+            value='send'
+          />
+        </form>
+      </div>
     </div>
   );
 };

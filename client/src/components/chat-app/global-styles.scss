@@ -1,7 +1,5 @@
 $white: #FFFFFF;
-$grey: #f9f9f9;
-$borderGray: #D0D0D0;
-$slate: #495867;
+$grey: #CACFD6;
 $primary: #7daa92;
 $primaryHover: rgba(125, 170, 146, 0.8);
 $placeholder: rgba(0, 0, 0, 0.6);
@@ -11,6 +9,7 @@ $contentPadding: 32px;
 $borderRadius: 4px;
 $label: 10px;
 $body: 14px;
+$title: 20px;
 $opacitySecondary: 0.6;
 $inputPadding: 8px;
 $btnPadding: 8px 16px;
@@ -26,12 +25,6 @@ html, body {
   margin: 0;
 }
 
-body {
-  background-image: url('./../../assets/topo.png');
-  background-size: auto;
-  background-repeat: repeat;
-}
-
 h1, h2, h3, h4, h5, b {
   margin: 0;
   font-family: $titleFont;
@@ -43,13 +36,13 @@ input {
 }
 
 #chat-app {
+  background-color: $grey;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   font-family: $bodyFont;
-  padding: $contentPadding;
 }
 
 .text--label {

@@ -2,12 +2,20 @@ import React, { useState, useEffect } from 'react';
 
 import './global-styles.scss'
 import Join from '../join/join';
-import Chat from '../chat/chat';
+import MultiView from '../multiview/multiview';
 
 const ChatApp = function() {
-  const [room, setRoom] = useState('');
-  const [name, setName] = useState('');
+  const user = useUserInfo('', '');
+  return (
+    <div id='chat-app'>
+      {user.room === '' || user.name === '' ? <Join nameProp={user.name} roomProp={user.room}/> : <MultiView {...user}/>}
+    </div>
+  );
+};
 
+function useUserInfo(initialName, initialRoom) {
+  const [name, setName] = useState(initialName);
+  const [room, setRoom] = useState(initialRoom);
   useEffect(() => {
     const user = fetchQueryParams(window.location.href);
     if (user.name) {
@@ -17,13 +25,9 @@ const ChatApp = function() {
       setRoom(user.room);
     }
   }, []);
-
-  return (
-    <div id='chat-app'>
-      {room === '' || name === '' ? <Join nameProp={name} roomProp={room}/> : <Chat name={name} room={room}/>}
-    </div>
-  );
-};
+  
+  return {name, room}
+}
 
 function fetchQueryParams(url) {
   const validParams = ['name', 'room'];

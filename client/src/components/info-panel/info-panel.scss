@@ -1,0 +1,28 @@
+@import './../chat-app/global-styles.scss';
+
+#info-panel {
+  width: calc(100% - 8px);
+  height: calc(100vh - 16px);
+  margin: 8px;
+  margin-right: 0;
+  background-color: $white;
+  border-radius: $borderRadius;
+  box-shadow: $lowCastShadow;
+
+  .info-panel__header {
+    display: flex;
+    justify-content: center;
+    padding: $contentPadding;
+    border-bottom: 1px solid $grey;
+  }
+
+  .info-panel__content {
+    padding: $contentPadding;
+  }
+
+  .info-panel__name {
+    font-size: $title;
+    line-height: 26px;
+    margin: 0;
+  }
+}

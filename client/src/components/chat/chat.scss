@@ -1,58 +1,79 @@
 @import './../chat-app/global-styles.scss';
 
 #chat {
-  background-color: $white;
-  border-radius: $borderRadius;
-  box-shadow: $lowCastShadow;
-  max-width: 50%;
-  height: calc(100vh - 64px);
-}
-
-.chat__title,
-.chat__members {
-  margin: $contentPadding $contentPadding 0px $contentPadding;
-}
-
-.chat__title {
-  color: $primary;
-}
-
-.chat__members {
-  margin-top: 0px;
-  margin-bottom: 24px;
-}
-
-.chat__messages {
-  box-shadow: $insetLowCastShadow;
-  height: calc(100% - 175px);
-  background-color: $grey;
-  overflow-y: scroll;
-  padding: 8px 16px;
-  padding-bottom: 16px;
+  border-left: 1px solid $grey;
+  height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
 
-.chat__new-message-form {
-  display: grid;
-  grid-template-columns: 7fr 1fr;
-}
+  .chat__header {
+    background-color: $white;
+    padding: 16px 32px;
+    margin: 8px;
+    border-radius: 4px;
+    box-shadow: $lowCastShadow;
+    border-bottom: 1px solid $grey;
 
-.new-message-form__input {
-  padding: 16px;
-  font-size: $body;
-}
+    .header__title {
+      font-size: $title;
+      color: $primary;
+    }
+    
+    .header__members {
+      font-size: $body;
+      opacity: 0.6;
+    }
+  }
 
-.btn.btn--send-message {
-  margin-top: 0;
-  border-radius: 0;
-  border-bottom-right-radius: $borderRadius;
-}
+  .chat__content {
+    margin: 8px;
+    margin-top: 0;
+    border-radius: $borderRadius;
+    box-shadow: $lowCastShadow;
+    background-color: $white;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 
-@media only screen and (max-width: 750px) {
-  #chat {
-    max-width: 100%;
+    .chat__messages {
+      border-bottom: 1px solid $grey;
+      padding: $contentPadding;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      overflow-y: scroll;
+
+      &::-webkit-scrollbar {
+        display: none;
+      }      
+    }
+
+    .chat__new-message-form {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+
+      .new-message-form__input {
+        font-size: $body;
+        flex: 1;
+        padding: 16px;
+        outline: none;
+      }
+
+      .btn.btn--send-message {
+        padding: 16px;
+        margin-top: 0;
+        background-color: $white;
+        color: $primary;
+        transition: color 100ms ease-in-out;
+
+        &:hover, &:focus {
+          color: $primaryHover;
+        }
+      }
+    }
   }
 }
